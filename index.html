@@ -22,6 +22,19 @@
     body {
       background-color: #1a1a1d;
       color: #e0e0e0;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('AQUÍ_PONES_LA_URL_DE_TU_IMAGEN_DE_FONDO') no-repeat center center/cover;
+      opacity: 0.85;
+      z-index: -1;
     }
 
     .intro {
@@ -107,7 +120,7 @@
     .card {
       flex: 0 0 auto;
       width: 160px;
-      height: 240px;
+      height: 220px;
       background-color: #2b2b30;
       border-radius: 10px;
       transition: transform 0.3s ease;
@@ -188,7 +201,7 @@
   </script>
 </head>
 <body>
-  <div class="intro">Iniciando experiencia...</div>
+  <div class="intro">Te doy la bienvenida a UPLoads</div>
 
   <header>
     <div class="logo">Uploads</div>
@@ -207,9 +220,10 @@
     <section class="section">
       <h2>Películas Populares</h2>
       <div class="card-container">
-        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+1" alt="película 1"></div></a></div>
+        <div><a href="peliculas.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+1" alt="película 1"></div></a></div>
         <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+2" alt="película 2"></div></a></div>
         <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+3" alt="película 3"></div></a></div>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+4" alt="película 4"></div></a></div>
       </div>
     </section>
 
