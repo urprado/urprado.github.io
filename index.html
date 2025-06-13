@@ -14,8 +14,8 @@
     }
 
     body {
-      background-color: #0e0b20;
-      color: white;
+      background-color: #1a1a1d;
+      color: #e0e0e0;
       overflow-x: hidden;
     }
 
@@ -23,7 +23,7 @@
       position: fixed;
       width: 100%;
       height: 100%;
-      background: black;
+      background: #0d0d0d;
       color: white;
       display: flex;
       align-items: center;
@@ -42,7 +42,7 @@
       text-align: center;
       font-size: 3rem;
       font-weight: 700;
-      color: #00bcd4;
+      color: #82d8f0;
     }
 
     .section {
@@ -65,38 +65,26 @@
       flex: 0 0 auto;
       width: 200px;
       height: 300px;
-      background-color: #1a1a40;
+      background-color: #2b2b30;
       border-radius: 10px;
       transition: transform 0.3s ease;
+      overflow: hidden;
     }
 
     .card:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
     }
 
     .card.artist {
       width: 200px;
       height: 200px;
-    }
-
-    .scroll-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-
-    .scroll-btn.left {
-      left: 0;
-    }
-
-    .scroll-btn.right {
-      right: 0;
     }
 
     .scroll-wrapper {
@@ -114,111 +102,80 @@
     <div class="section">
       <h2>Películas nuevas</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 cards -->
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_1" alt="Película"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_2" alt="Película"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_3" alt="Película"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_4" alt="Película"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_5" alt="Película"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
 
     <div class="section">
       <h2>Seleccionadas por el editor</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 cards -->
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_1" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_2" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_3" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_4" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_5" alt="Editor"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
 
     <div class="section">
       <h2>Series nuevas</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 cards -->
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_1" alt="Serie"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_2" alt="Serie"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_3" alt="Serie"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_4" alt="Serie"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_5" alt="Serie"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
 
     <div class="section">
       <h2>Seleccionadas por el editor</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 cards -->
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
-          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_1" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_2" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_3" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_4" alt="Editor"></div>
+          <div class="card"><img src="URL_DE_IMAGEN_5" alt="Editor"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
 
     <div class="section">
       <h2>Artistas destacados</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 artist cards -->
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_1" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_2" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_3" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_4" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_5" alt="Artista"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
 
     <div class="section">
       <h2>Seleccionadas por el editor</h2>
       <div class="scroll-wrapper">
-        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
         <div class="card-container">
-          <!-- 15 artist cards -->
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
-          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_1" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_2" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_3" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_4" alt="Artista"></div>
+          <div class="card artist"><img src="URL_DE_IMAGEN_5" alt="Artista"></div>
         </div>
-        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
-
   </main>
-
-  <script>
-    function scrollLeft(button) {
-      const container = button.nextElementSibling;
-      container.scrollBy({ left: -400, behavior: 'smooth' });
-    }
-
-    function scrollRight(button) {
-      const container = button.previousElementSibling;
-      container.scrollBy({ left: 400, behavior: 'smooth' });
-    }
-  </script>
 </body>
 </html>
