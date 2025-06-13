@@ -1,198 +1,74 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UPLoads</title>
-  <style>
-    /* PANTALLA DE CARGA */
-    #loader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: #0e0e0e;
-      color: #e50914;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      z-index: 9999;
-      animation: fadeOut 1s ease-out 2s forwards;
-    }
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
+const fonts = {
+  kindSans: "'Kind Sans', sans-serif",
+  montserrat: "'Montserrat', sans-serif",
+  merriweather: "'Merriweather', serif",
+};
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0e0e0e;
-      color: #fff;
-    }
+const Section = ({ title, isSquare = false }) => {
+  const cards = Array.from({ length: 15 }, (_, i) => `https://placehold.co/300x${isSquare ? 300 : 170}?text=Card+${i + 1}`);
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(0, 0, 0, 0.85);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header h1 {
-      color: #e50914;
-      font-size: 28px;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #ccc;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .search-box {
-      margin: 20px 40px;
-    }
-
-    .search-box input {
-      width: 100%;
-      max-width: 400px;
-      padding: 10px 15px;
-      border-radius: 20px;
-      border: none;
-      font-size: 16px;
-    }
-
-    .section {
-      padding: 20px 40px;
-    }
-
-    .section h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-
-    .card-row {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-    }
-
-    .card {
-      min-width: 300px;
-      height: 170px;
-      background: #1c1c1c;
-      border-radius: 12px;
-      overflow: hidden;
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-    }
-
-    footer {
-      background: #111;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #777;
-      margin-top: 40px;
-    }
-
-    ::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        min-width: 240px;
-        height: 140px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- PANTALLA DE CARGA -->
-  <div id="loader">Cargando UPLoads...</div>
-
-  <header>
-    <h1>UPLoads</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="peliculas.html">Películas</a>
-      <a href="series.html">Series</a>
-      <a href="musica.html">Música</a>
-    </nav>
-  </header>
-
-  <!-- Buscador -->
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Buscar en UPLoads..." />
-  </div>
-
-  <!-- Sección con tarjetas -->
-  <section class="section">
-    <h3>Selección continua</h3>
-    <div class="card-row" id="carousel">
-      <!-- Tarjetas generadas por JavaScript -->
+  return (
+    <div className="mb-8">
+      <h2 className="text-white text-2xl font-bold mb-2" style={{ fontFamily: fonts.montserrat }}>{title}</h2>
+      <div className="relative">
+        <div className="flex space-x-4 overflow-x-auto pb-4 no-scrollbar">
+          {cards.map((src, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.1 }}
+              className={`flex-shrink-0 transition-transform duration-300 rounded-xl overflow-hidden ${isSquare ? "w-[150px] h-[150px]" : "w-[300px] h-[170px]"}`}
+            >
+              <img src={src} alt={`Card ${idx + 1}`} className="object-cover w-full h-full" />
+            </motion.div>
+          ))}
+        </div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full cursor-pointer">
+          <ChevronRight className="text-white" />
+        </div>
+      </div>
     </div>
-  </section>
+  );
+};
 
-  <footer>
-    © 2025 UPLoads – Navegación completa activada 🚀
-  </footer>
+export default function App() {
+  const [loading, setLoading] = useState(true);
 
-  <script>
-    const images = Array.from({ length: 10 }, (_, i) => i + 1);
-    const carousel = document.getElementById("carousel");
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
-    function createCard(num) {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.onclick = () => window.location.href = "detalle.html?item=" + num;
-      card.innerHTML = `<img src="https://picsum.photos/600/340?random=${num}" alt="Contenido ${num}" />`;
-      return card;
-    }
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-black">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          style={{ fontFamily: fonts.kindSans }}
+          className="text-white text-4xl"
+        >
+          Iniciando experiencia
+        </motion.h1>
+      </div>
+    );
+  }
 
-    function addCards() {
-      images.forEach(num => {
-        const card = createCard(num);
-        carousel.appendChild(card);
-      });
-    }
-
-    // Agregamos muchas tarjetas para que se vean infinitas
-    for (let i = 0; i < 4; i++) addCards();
-  </script>
-
-</body>
-</html>
+  return (
+    <div className="min-h-screen bg-[#0f0f0f] p-6">
+      <h1 className="text-4xl font-bold text-white mb-6" style={{ fontFamily: fonts.montserrat }}>
+        Uploads
+      </h1>
+      <Section title="Películas nuevas" />
+      <Section title="Seleccionadas por el editor" />
+      <Section title="Series nuevas" />
+      <Section title="Series seleccionadas por el editor" />
+      <Section title="Artistas destacados" isSquare />
+      <Section title="Artistas seleccionados por el editor" isSquare />
+    </div>
+  );
+}
