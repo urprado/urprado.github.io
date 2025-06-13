@@ -1,74 +1,224 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uploads</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
 
-const fonts = {
-  kindSans: "'Kind Sans', sans-serif",
-  montserrat: "'Montserrat', sans-serif",
-  merriweather: "'Merriweather', serif",
-};
+    body {
+      background-color: #0e0b20;
+      color: white;
+      overflow-x: hidden;
+    }
 
-const Section = ({ title, isSquare = false }) => {
-  const cards = Array.from({ length: 15 }, (_, i) => `https://placehold.co/300x${isSquare ? 300 : 170}?text=Card+${i + 1}`);
+    .intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 1000;
+      animation: fadeOut 2s ease-in-out 2s forwards;
+    }
 
-  return (
-    <div className="mb-8">
-      <h2 className="text-white text-2xl font-bold mb-2" style={{ fontFamily: fonts.montserrat }}>{title}</h2>
-      <div className="relative">
-        <div className="flex space-x-4 overflow-x-auto pb-4 no-scrollbar">
-          {cards.map((src, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.1 }}
-              className={`flex-shrink-0 transition-transform duration-300 rounded-xl overflow-hidden ${isSquare ? "w-[150px] h-[150px]" : "w-[300px] h-[170px]"}`}
-            >
-              <img src={src} alt={`Card ${idx + 1}`} className="object-cover w-full h-full" />
-            </motion.div>
-          ))}
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #00bcd4;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .card {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 300px;
+      background-color: #1a1a40;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+    }
+
+    .card.artist {
+      width: 200px;
+      height: 200px;
+    }
+
+    .scroll-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .scroll-btn.left {
+      left: 0;
+    }
+
+    .scroll-btn.right {
+      right: 0;
+    }
+
+    .scroll-wrapper {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">Iniciando experiencia...</div>
+
+  <header>Uploads</header>
+
+  <main>
+    <!-- Secciones -->
+    <div class="section">
+      <h2>Películas nuevas</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 cards -->
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full cursor-pointer">
-          <ChevronRight className="text-white" />
-        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
     </div>
-  );
-};
 
-export default function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-black">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          style={{ fontFamily: fonts.kindSans }}
-          className="text-white text-4xl"
-        >
-          Iniciando experiencia
-        </motion.h1>
+    <div class="section">
+      <h2>Seleccionadas por el editor</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 cards -->
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
       </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-[#0f0f0f] p-6">
-      <h1 className="text-4xl font-bold text-white mb-6" style={{ fontFamily: fonts.montserrat }}>
-        Uploads
-      </h1>
-      <Section title="Películas nuevas" />
-      <Section title="Seleccionadas por el editor" />
-      <Section title="Series nuevas" />
-      <Section title="Series seleccionadas por el editor" />
-      <Section title="Artistas destacados" isSquare />
-      <Section title="Artistas seleccionados por el editor" isSquare />
     </div>
-  );
-}
+
+    <div class="section">
+      <h2>Series nuevas</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 cards -->
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Seleccionadas por el editor</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 cards -->
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+          <div class="card"></div><div class="card"></div><div class="card"></div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Artistas destacados</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 artist cards -->
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Seleccionadas por el editor</h2>
+      <div class="scroll-wrapper">
+        <button class="scroll-btn left" onclick="scrollLeft(this)">&#10094;</button>
+        <div class="card-container">
+          <!-- 15 artist cards -->
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+          <div class="card artist"></div><div class="card artist"></div><div class="card artist"></div>
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight(this)">&#10095;</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function scrollLeft(button) {
+      const container = button.nextElementSibling;
+      container.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+
+    function scrollRight(button) {
+      const container = button.previousElementSibling;
+      container.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
