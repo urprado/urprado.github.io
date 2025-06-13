@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeoFlix</title>
+  <title>UPLoads</title>
   <style>
     body {
       margin: 0;
@@ -41,50 +41,13 @@
       color: #fff;
     }
 
-    .hero {
-      height: 60vh;
-      background: linear-gradient(to top, #0e0e0e 30%, transparent),
-        url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?fit=crop&w=1400&q=80') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      color: white;
-    }
-
-    .hero h2 {
-      font-size: 48px;
-      margin: 0 0 10px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
-
-    .hero button {
-      background-color: #e50914;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .hero button:hover {
-      background-color: #b00610;
-    }
-
     .section {
       padding: 30px 40px;
     }
 
     .section h3 {
       font-size: 24px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .card-row {
@@ -95,12 +58,14 @@
     }
 
     .card {
-      min-width: 180px;
+      min-width: 300px;
+      height: 170px;
       background: #1c1c1c;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       transition: transform 0.3s, box-shadow 0.3s;
+      flex-shrink: 0;
     }
 
     .card:hover {
@@ -110,8 +75,9 @@
 
     .card img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      border-bottom: 2px solid #333;
     }
 
     footer {
@@ -133,12 +99,9 @@
     }
 
     @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 32px;
-      }
-
-      .hero p {
-        font-size: 14px;
+      .card {
+        min-width: 240px;
+        height: 140px;
       }
 
       nav a {
@@ -151,43 +114,57 @@
 <body>
 
   <header>
-    <h1>NeoFlix</h1>
+    <h1>UPLoads</h1>
     <nav>
       <a href="#">Inicio</a>
       <a href="#">Películas</a>
       <a href="#">Series</a>
-      <a href="#">Mi lista</a>
+      <a href="#">Música</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h2>La Aventura Comienza</h2>
-    <p>Explora miles de películas y series sin límites, con estilo y emoción.</p>
-    <button>Reproducir ahora</button>
-  </section>
-
+  <!-- Sección: Destacado -->
   <section class="section">
-    <h3>Tendencias</h3>
+    <h3>Destacado</h3>
     <div class="card-row">
-      <div class="card"><img src="https://picsum.photos/200/300?random=1" alt="Película 1" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=2" alt="Película 2" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=3" alt="Película 3" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=4" alt="Película 4" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=1" alt="Destacado 1" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=2" alt="Destacado 2" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=3" alt="Destacado 3" /></div>
     </div>
   </section>
 
+  <!-- Sección: Selección del editor -->
   <section class="section">
-    <h3>Recomendados para ti</h3>
+    <h3>Selección del editor</h3>
     <div class="card-row">
-      <div class="card"><img src="https://picsum.photos/200/300?random=5" alt="Película 5" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=6" alt="Película 6" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=7" alt="Película 7" /></div>
-      <div class="card"><img src="https://picsum.photos/200/300?random=8" alt="Película 8" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=4" alt="Editor 1" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=5" alt="Editor 2" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=6" alt="Editor 3" /></div>
+    </div>
+  </section>
+
+  <!-- Sección: Nuevos lanzamientos -->
+  <section class="section">
+    <h3>Nuevos lanzamientos</h3>
+    <div class="card-row">
+      <div class="card"><img src="https://picsum.photos/600/340?random=7" alt="Nuevo 1" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=8" alt="Nuevo 2" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=9" alt="Nuevo 3" /></div>
+    </div>
+  </section>
+
+  <!-- Sección: Tendencias -->
+  <section class="section">
+    <h3>Tendencias</h3>
+    <div class="card-row">
+      <div class="card"><img src="https://picsum.photos/600/340?random=10" alt="Tendencia 1" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=11" alt="Tendencia 2" /></div>
+      <div class="card"><img src="https://picsum.photos/600/340?random=12" alt="Tendencia 3" /></div>
     </div>
   </section>
 
   <footer>
-    © 2025 NeoFlix - Interfaz creada con fines educativos.
+    © 2025 UPLoads – Inspirado en la estética de plataformas de streaming.
   </footer>
 
 </body>
