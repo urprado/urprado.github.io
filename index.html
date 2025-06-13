@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uploads</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-ZJ4iCyA67iNc7zqx2oAbP5c1bkAn3RQ5BIAQMCQdTwFtMuE1aMv2W9OCNGqqJv5sWakHb20qbyL2ckcTuT4vQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     * {
       box-sizing: border-box;
@@ -105,8 +106,8 @@
 
     .card {
       flex: 0 0 auto;
-      width: 180px;
-      height: 260px;
+      width: 160px;
+      height: 240px;
       background-color: #2b2b30;
       border-radius: 10px;
       transition: transform 0.3s ease;
@@ -125,11 +126,53 @@
     }
 
     .card.artist {
-      height: 180px;
+      height: 160px;
     }
 
     .hidden {
       display: none !important;
+    }
+
+    footer {
+      background-color: #1f1f23;
+      padding: 30px 20px;
+      color: #cccccc;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .footer-links,
+    .footer-social {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-social a {
+      margin: 0 10px;
+      color: #999;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-social a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
   <script>
@@ -162,71 +205,52 @@
 
   <main>
     <section class="section">
-      <h2>Películas nuevas</h2>
+      <h2>Películas Populares</h2>
       <div class="card-container">
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película nueva 1"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película nueva 2"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película nueva 3"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película nueva 4"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película nueva 5"></div></a>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+1" alt="película 1"></div></a></div>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+2" alt="película 2"></div></a></div>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+3" alt="película 3"></div></a></div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Películas seleccionadas por el editor</h2>
+      <h2>Series Destacadas</h2>
       <div class="card-container">
-        <a href="pelicula.html"><div class="card"><img src="https://m.media-amazon.com/images/S/pv-target-images/9ac224b5aa8adcb973d602d2c207aa1781480fb2f79035cf6987d874075be6a9.jpg" alt="Wicked"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película editor 2"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película editor 3"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película editor 4"></div></a>
-        <a href="pelicula.html"><div class="card"><img src="URL_IMAGEN" alt="Película editor 5"></div></a>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+1" alt="serie 1"></div></a></div>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+2" alt="serie 2"></div></a></div>
+        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+3" alt="serie 3"></div></a></div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Series nuevas</h2>
+      <h2>Artistas Populares</h2>
       <div class="card-container">
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie nueva 1"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie nueva 2"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie nueva 3"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie nueva 4"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie nueva 5"></div></a>
+        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+1" alt="artista 1"></div></a></div>
+        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+2" alt="artista 2"></div></a></div>
+        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+3" alt="artista 3"></div></a></div>
       </div>
     </section>
-
-    <section class="section">
-      <h2>Series seleccionadas por el editor</h2>
-      <div class="card-container">
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie editor 1"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie editor 2"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie editor 3"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie editor 4"></div></a>
-        <a href="serie.html"><div class="card"><img src="URL_IMAGEN" alt="Serie editor 5"></div></a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Artistas destacados</h2>
-      <div class="card-container">
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista 1"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista 2"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista 3"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista 4"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista 5"></div></a>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Artistas seleccionados por el editor</h2>
-      <div class="card-container">
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista editor 1"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista editor 2"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista editor 3"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista editor 4"></div></a>
-        <a href="musica.html"><div class="card artist"><img src="URL_IMAGEN" alt="Artista editor 5"></div></a>
-      </div>
-    </section>
-
   </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">Uploads</div>
+      <div class="footer-links">
+        <a href="#">Acerca de</a>
+        <a href="#">Términos de servicio</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div class="footer-social">
+        <span>Síguenos:</span>
+        <!-- Cambia estos enlaces por los de tus redes sociales -->
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="footer-copy">&copy; 2025 Uploads. Todos los derechos reservados.</div>
+    </div>
+  </footer>
 </body>
 </html>
