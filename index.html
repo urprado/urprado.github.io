@@ -1,126 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UPLoads</title>
   <link rel="icon" href="https://img.icons8.com/?size=512&id=ORTeHm645Suq&format=png" type="image/png">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
       background-color: #101010;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
-      overflow-x: hidden;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('URL_DE_TU_FONDO.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.8;
-      z-index: -1;
-    }
-
     header {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
       width: 100%;
       background-color: #1a1a1a;
-      padding: 10px 30px;
-      border-bottom: 2px solid #2c2c2c;
       display: flex;
       justify-content: center;
+      padding: 15px 0;
       z-index: 1000;
-    }
-    .header-inner {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .site-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-    .site-info img {
-      width: 24px;
-      height: 24px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
     .menu {
       display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-grow: 1;
+      gap: 30px;
     }
     .menu a {
       color: white;
-      background-color: #2e2e2e;
-      padding: 10px 20px;
-      border-radius: 20px;
       text-decoration: none;
+      padding: 10px 20px;
+      background-color: #2e2e2e;
+      border-radius: 15px;
       transition: background-color 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 100px;
-      text-align: center;
     }
     .menu a:hover {
       background-color: #3f3f3f;
     }
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 180px;
-      justify-content: flex-end;
-    }
-    .user-info img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid white;
-      object-fit: cover;
-    }
-
-    .container {
-      padding: 120px 30px 30px;
+    main {
+      padding: 100px 30px 30px;
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
     }
     .section {
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
-    .section-title {
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-align: left;
-      padding-left: 10px;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
     }
-    .card-row {
+    .section-header h2 {
+      margin: 0;
+    }
+    .catalogo-link {
+      color: #00ccff;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    .card-grid {
       display: flex;
       gap: 15px;
-      overflow-x: hidden;
       flex-wrap: nowrap;
-      justify-content: flex-start;
+      overflow-x: auto;
     }
     .card {
       flex: 0 0 auto;
-      width: 180px;
-      height: 180px;
-      background-color: #1e1e1e;
+      width: 160px;
+      height: 160px;
       border-radius: 20px;
+      background-color: #1e1e1e;
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       transition: transform 0.2s;
@@ -132,174 +83,87 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 20px;
-    }
-
-    .login-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #101010;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    .login-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-    .login-input {
-      padding: 10px;
-      border-radius: 15px;
-      border: none;
-      outline: none;
-      width: 300px;
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1em;
-    }
-    .login-button, .choose-button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 15px;
-      background-color: #2e2e2e;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin: 5px;
-      font-size: 1em;
-    }
-    .login-button:hover, .choose-button:hover {
-      background-color: #3f3f3f;
-    }
-    .profile-selection {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .profile-option {
-      width: 100px;
-      height: 100px;
-      border-radius: 20px;
-      overflow: hidden;
-      background-color: #1e1e1e;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-    .profile-option:hover {
-      transform: scale(1.2);
-    }
-    .profile-option img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .floating-text {
-      position: absolute;
-      bottom: -20px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9em;
-      color: #00ccff;
-      opacity: 0;
-      animation: floatUp 2s ease forwards;
-      pointer-events: none;
-      user-select: none;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(20px); opacity: 0; }
-      50% { transform: translateY(-10px); opacity: 1; }
-      100% { transform: translateY(-30px); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <!-- Pantalla de inicio de sesión -->
-  <div class="login-screen" id="loginScreen">
-    <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
-    <div>
-      <button class="login-button" onclick="enterSite()">Entrar</button>
-      <button class="choose-button" onclick="toggleProfileChooser()">Elegir foto de perfil</button>
-    </div>
-    <div id="profileChooser" class="profile-selection">
-      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto1.jpg')">
-        <img src="https://example.com/foto1.jpg" alt="Foto 1">
-      </div>
-      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto2.jpg')">
-        <img src="https://example.com/foto2.jpg" alt="Foto 2">
-      </div>
-      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto3.jpg')">
-        <img src="https://example.com/foto3.jpg" alt="Foto 3">
-      </div>
-    </div>
-  </div>
-
-  <!-- Encabezado con menú y perfil -->
   <header>
-    <div class="header-inner">
-      <div class="site-info">
-        <span>UPLoads</span>
-        <img src="https://img.icons8.com/?size=512&id=ORTeHm645Suq&format=png" alt="Icono UPLoads">
-      </div>
-      <nav class="menu">
-        <a href="peliculas.html">Películas</a>
-        <a href="series.html">Series</a>
-        <a href="musica.html">Música</a>
-        <a href="juegos.html">Juegos</a>
-      </nav>
-      <div class="user-info">
-        <span id="usernameDisplay">Usuario</span>
-        <img id="profileImage" src="https://via.placeholder.com/40" alt="Foto perfil" />
-      </div>
-    </div>
+    <nav class="menu">
+      <a href="peliculas.html">Películas</a>
+      <a href="series.html">Series</a>
+      <a href="musica.html">Música</a>
+      <a href="juegos.html">Juegos</a>
+    </nav>
   </header>
 
-  <div class="container">
-    <!-- Aquí irán las secciones como Películas, Series, Música y Juegos -->
-  </div>
+  <main>
+    <!-- Sección Películas -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Películas</h2>
+        <a class="catalogo-link" href="peliculas.html">Ver catálogo</a>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_1" alt="P1"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_2" alt="P2"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_3" alt="P3"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_4" alt="P4"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_5" alt="P5"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_6" alt="P6"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_7" alt="P7"></a>
+      </div>
+    </section>
 
-  <script>
-    function enterSite() {
-      const username = document.getElementById('usernameInput').value.trim();
-      const storedImage = localStorage.getItem('profileImage');
-      if (username) {
-        document.getElementById('usernameDisplay').innerText = username;
-        if (storedImage) {
-          document.getElementById('profileImage').src = storedImage;
-        }
-        document.getElementById('loginScreen').classList.add('hidden');
-      }
-    }
+    <!-- Sección Series -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Series</h2>
+        <a class="catalogo-link" href="series.html">Ver catálogo</a>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_8" alt="S1"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_9" alt="S2"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_10" alt="S3"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_11" alt="S4"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_12" alt="S5"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_13" alt="S6"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_14" alt="S7"></a>
+      </div>
+    </section>
 
-    function toggleProfileChooser() {
-      const chooser = document.getElementById('profileChooser');
-      chooser.style.display = chooser.style.display === 'flex' ? 'none' : 'flex';
-    }
+    <!-- Sección Música -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Música</h2>
+        <a class="catalogo-link" href="musica.html">Ver catálogo</a>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_15" alt="M1"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_16" alt="M2"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_17" alt="M3"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_18" alt="M4"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_19" alt="M5"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_20" alt="M6"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_21" alt="M7"></a>
+      </div>
+    </section>
 
-    function selectProfileImage(element, url) {
-      localStorage.setItem('profileImage', url);
-      document.getElementById('profileImage').src = url;
-      toggleProfileChooser();
-
-      const text = document.createElement('div');
-      text.className = 'floating-text';
-      text.textContent = '¡Qué buen gusto!';
-      element.appendChild(text);
-
-      setTimeout(() => {
-        text.remove();
-      }, 2000);
-    }
-  </script>
+    <!-- Sección Juegos -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Juegos</h2>
+        <a class="catalogo-link" href="juegos.html">Ver catálogo</a>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_22" alt="J1"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_23" alt="J2"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_24" alt="J3"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_25" alt="J4"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_26" alt="J5"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_27" alt="J6"></a>
+        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_28" alt="J7"></a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
