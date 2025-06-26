@@ -77,6 +77,34 @@
     .section-title {
       font-size: 1.5em;
       margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .profile-selection {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .profile-option {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #1e1e1e;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .profile-option:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-option img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .card-row {
@@ -156,12 +184,6 @@
   <!-- Pantalla de inicio de sesión -->
   <div class="login-screen" id="loginScreen">
     <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
-    <select id="profilePicSelect" class="login-input">
-      <option value="https://via.placeholder.com/40">Elige una imagen</option>
-      <option value="https://example.com/foto1.jpg">Foto 1</option>
-      <option value="https://example.com/foto2.jpg">Foto 2</option>
-      <option value="https://example.com/foto3.jpg">Foto 3</option>
-    </select>
     <button class="login-button" onclick="enterSite()">Entrar</button>
   </div>
 
@@ -183,16 +205,82 @@
 
   <!-- Contenido principal -->
   <div class="container">
-    <!-- El contenido original permanece igual -->
+    <!-- Secciones tipo Netflix -->
+    <div class="section">
+      <div class="section-title">Serie 1</div>
+      <div class="profile-selection">
+        <div class="profile-option"><img src="https://example.com/serie1-opcion1.jpg" alt="Serie 1 - Opción 1"></div>
+        <div class="profile-option"><img src="https://example.com/serie1-opcion2.jpg" alt="Serie 1 - Opción 2"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Serie 2</div>
+      <div class="profile-selection">
+        <div class="profile-option"><img src="https://example.com/serie2-opcion1.jpg" alt="Serie 2 - Opción 1"></div>
+        <div class="profile-option"><img src="https://example.com/serie2-opcion2.jpg" alt="Serie 2 - Opción 2"></div>
+      </div>
+    </div>
+
+    <!-- Estilo PS5 para contenido principal -->
+    <div class="section">
+      <div class="section-title">Música</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Películas</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Series</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Juegos</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
+      </div>
+    </div>
   </div>
 
   <script>
     function enterSite() {
       const username = document.getElementById('usernameInput').value.trim();
-      const profilePic = document.getElementById('profilePicSelect').value;
       if (username) {
         document.getElementById('usernameDisplay').innerText = username;
-        document.getElementById('profileImage').src = profilePic;
         document.getElementById('loginScreen').classList.add('hidden');
       }
     }
