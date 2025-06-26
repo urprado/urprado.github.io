@@ -1,130 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uploads</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-ZJ4iCyA67iNc7zqx2oAbP5c1bkAn3RQ5BIAQMCQdTwFtMuE1aMv2W9OCNGqqJv5sWakHb20qbyL2ckcTuT4vQw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio - Estilo PS5</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-    }
-
-    html, body {
-      max-width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #101010;
+      color: white;
       overflow-x: hidden;
     }
 
-    body {
-      background-color: #1a1a1d;
-      color: #e0e0e0;
-      position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('fondo.jpg') no-repeat center center/cover;
-      opacity: 0.85;
-      z-index: -1;
-    }
-
-    .intro {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: #0d0d0d;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      z-index: 1000;
-      animation: fadeOut 2s ease-in-out 2s forwards;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
     header {
-      padding: 20px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #1f1f23;
+      justify-content: center;
+      background-color: #1a1a1a;
+      padding: 10px 0;
+      border-bottom: 2px solid #2c2c2c;
     }
 
-    .logo {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #f0f0f5;
-    }
-
-    .nav-links {
+    .menu {
       display: flex;
       gap: 20px;
     }
 
-    .nav-links a {
-      color: #cccccc;
+    .menu a {
       text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    .search-bar {
+      color: white;
+      background-color: #2e2e2e;
       padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-      background-color: #1a1a1d;
+      border-radius: 20px;
+      transition: background-color 0.3s;
     }
 
-    .search-bar input[type="text"] {
-      width: 50%;
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
+    .menu a:hover {
+      background-color: #3f3f3f;
+    }
+
+    .container {
+      padding: 30px;
     }
 
     .section {
-      padding: 20px;
+      margin-bottom: 50px;
     }
 
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 15px;
     }
 
-    .card-container {
+    .card-row {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
     }
 
     .card {
       flex: 0 0 auto;
-      width: 160px;
-      height: 220px;
-      background-color: #2b2b30;
-      border-radius: 10px;
+      width: 180px;
+      height: 260px;
+      background-color: #1e1e1e;
+      border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s;
     }
 
     .card:hover {
@@ -135,150 +77,113 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
     }
 
-    .card.artist {
-      height: 160px;
+    .user-login {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
-    footer {
-      background-color: #1f1f23;
-      padding: 30px 20px;
-      color: #cccccc;
+    .user-login input {
+      padding: 10px;
+      border-radius: 15px;
+      border: none;
+      outline: none;
+      width: 300px;
       text-align: center;
     }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .profile-pic {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
     }
 
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .footer-links,
-    .footer-social {
-      margin: 10px 0;
-    }
-
-    .footer-links a,
-    .footer-social a {
-      margin: 0 10px;
-      color: #999;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover,
-    .footer-social a:hover {
-      color: #fff;
-    }
-
-    .footer-copy {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #666;
+    .profile-pic img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
     }
   </style>
-  <script>
-    function buscarContenido() {
-      const input = document.getElementById('search-input').value.toLowerCase();
-      const cards = document.querySelectorAll('.card');
-
-      cards.forEach(card => {
-        const altText = card.querySelector('img')?.alt?.toLowerCase() || '';
-        card.parentElement.classList.toggle('hidden', !altText.includes(input));
-      });
-    }
-  </script>
 </head>
 <body>
-  <div class="intro">Te doy la bienvenida a UPLoads</div>
-
   <header>
-    <div class="logo">Uploads</div>
-    <nav class="nav-links">
+    <nav class="menu">
+      <a href="musica.html">Música</a>
       <a href="peliculas.html">Películas</a>
       <a href="series.html">Series</a>
-      <a href="musica.html">Música</a>
+      <a href="juegos.html">Juegos</a>
     </nav>
   </header>
 
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Buscar contenido..." onkeyup="buscarContenido()">
+  <div class="user-login">
+    <input type="text" placeholder="Ingresa tu nombre de usuario" />
   </div>
 
-  <main>
-    <section class="section">
-      <h2>Películas Populares</h2>
-      <div class="card-container">
-        <div><a href="puntildawn.html"><div class="card"><img src="https://m.media-amazon.com/images/S/pv-target-images/ed359a3822b47e630bf70c0b0d2c7da89fa5c2b2a245cfde5173423728696002.jpg" alt="Until Dawn"></div></a></div>
-        <div><a href="pblancanieves.html"><div class="card"><img src="https://lumiere-a.akamaihd.net/v1/images/poster_70x100_-_blancanieves-840x1201-1231218_2eb1d22e.jpeg" alt="Blancanieves"></div></a></div>
-        <div><a href="pliloystitch.html"><div class="card"><img src="https://pics.filmaffinity.com/Lilo_y_Stitch-842745284-large.jpg" alt="Lilo y Stitch"></div></a></div>
-        <div><a href="pballerina.html"><div class="card"><img src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2025/04/poster-personaje-ballerina-4318483.jpg?tf=3840x" alt="Ballerina"></div></a></div>
-         <div><a href="pminecraft.html"><div class="card"><img src="https://m.media-amazon.com/images/M/MV5BMGJjMDZiNzYtOWNjNS00MmYwLTg4NjAtYTJmYjZmODBlMzYzXkEyXkFqcGc@._V1_.jpg" alt="Una película de Minecraft"></div></a></div>
-                 <div><a href="pthunderbolts.html"><div class="card"><img src="https://lumiere-a.akamaihd.net/v1/images/teaser_1sht_-_rgb_for_online_use_only_6b92ba3f.jpeg" alt="Thunderbolts"></div></a></div>
-                 <div><a href="pdestinofinal6.html"><div class="card"><img src="https://pics.filmaffinity.com/final_destination_bloodlines-790034090-large.jpg" alt="Destino Final 6"></div></a></div>
-      </div>
-    </section>
+  <div class="profile-pic">
+    <!-- Cambia este src por el enlace de la foto de perfil del usuario -->
+    <img src="https://via.placeholder.com/100" alt="Foto de perfil" />
+  </div>
 
-   <section class="section">
-      <h2>No te debes perder</h2>
-      <div class="card-container">
-        <div><a href="pwicked.html"><div class="card"><img src="https://static.posters.cz/image/1300/264859.jpg" alt="Wicked"></div></a></div>
-        <div><a href="pgodzillaxkong.html"><div class="card"><img src="https://m.media-amazon.com/images/S/pv-target-images/5504512b5388c273a82ac1e507d109bea2b7faf40c2200536f433ff984a0ca85.jpg" alt="Godzilla x Kong"></div></a></div>
-        <div><a href="punlugarensilencio3"><div class="card"><img src="https://m.media-amazon.com/images/M/MV5BZDExZjJkNWUtMWFkNC00MDZiLThkNTEtMWVmYmQ3OGU3ZmM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Un lugar en silencio: Día Uno"></div></a></div>
-        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Película+4" alt="película 4"></div></a></div>
+  <div class="container">
+    <!-- Sección de Música -->
+    <div class="section">
+      <div class="section-title">Música</div>
+      <div class="card-row">
+        <!-- Reemplaza el src con tus enlaces de imágenes -->
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 1" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 2" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 3" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 4" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 5" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 6" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 7" /></div>
       </div>
-    </section>
-
-    <section class="section">
-      <h2>Series Destacadas</h2>
-      <div class="card-container">
-        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+1" alt="serie 1"></div></a></div>
-        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+2" alt="serie 2"></div></a></div>
-        <div><a href="pelicula.html"><div class="card"><img src="https://placehold.co/180x260?text=Serie+3" alt="serie 3"></div></a></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Artistas Populares</h2>
-      <div class="card-container">
-        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+1" alt="artista 1"></div></a></div>
-        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+2" alt="artista 2"></div></a></div>
-        <div><a href="pelicula.html"><div class="card artist"><img src="https://placehold.co/180x180?text=Artista+3" alt="artista 3"></div></a></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-logo">Uploads</div>
-      <div class="footer-links">
-        <a href="#">Acerca de</a>
-        <a href="#">Términos de servicio</a>
-        <a href="#">Política de privacidad</a>
-        <a href="#">Contacto</a>
-      </div>
-      <div class="footer-social">
-        <span>Síguenos:</span>
-        <!-- Cambia estos enlaces por los de tus redes sociales -->
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-      <div class="footer-copy">&copy; 2025 Uploads. Todos los derechos reservados.</div>
     </div>
-  </footer>
+
+    <!-- Sección de Películas -->
+    <div class="section">
+      <div class="section-title">Películas</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 1" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 2" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 3" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 4" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 5" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 6" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 7" /></div>
+      </div>
+    </div>
+
+    <!-- Sección de Series -->
+    <div class="section">
+      <div class="section-title">Series</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 1" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 2" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 3" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 4" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 5" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 6" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 7" /></div>
+      </div>
+    </div>
+
+    <!-- Sección de Juegos -->
+    <div class="section">
+      <div class="section-title">Juegos</div>
+      <div class="card-row">
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 1" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 2" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 3" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 4" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 5" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 6" /></div>
+        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 7" /></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
