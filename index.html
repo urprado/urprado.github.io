@@ -11,6 +11,7 @@
       background-color: #101010;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+      overflow-x: hidden;
     }
     header {
       position: fixed;
@@ -39,12 +40,12 @@
       background-color: #3f3f3f;
     }
     main {
-      padding: 100px 30px 30px;
+      padding: 100px 30px 60px;
       max-width: 1200px;
       margin: auto;
     }
     .section {
-      margin-bottom: 60px;
+      margin-bottom: 80px;
     }
     .section-header {
       display: flex;
@@ -62,22 +63,21 @@
     }
     .card-grid {
       display: flex;
-      gap: 15px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
     .card {
-      flex: 0 0 auto;
-      width: 160px;
-      height: 160px;
+      width: 220px;
+      height: 220px;
       border-radius: 20px;
       background-color: #1e1e1e;
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s;
+      transition: transform 0.3s;
     }
     .card:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
     .card img {
       width: 100%;
