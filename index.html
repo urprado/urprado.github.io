@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inicio - Estilo PS5</title>
+  <title>UPLoads</title>
   <style>
     body {
       margin: 0;
@@ -14,11 +14,17 @@
     }
 
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       background-color: #1a1a1a;
-      padding: 10px 0;
+      padding: 10px 30px;
       border-bottom: 2px solid #2c2c2c;
+      z-index: 1000;
     }
 
     .menu {
@@ -39,8 +45,21 @@
       background-color: #3f3f3f;
     }
 
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
     .container {
-      padding: 30px;
+      padding: 120px 30px 30px;
     }
 
     .section {
@@ -55,7 +74,6 @@
     .card-row {
       display: flex;
       gap: 20px;
-      overflow-x: auto;
     }
 
     .card {
@@ -79,36 +97,61 @@
       object-fit: cover;
     }
 
-    .user-login {
+    /* Pantalla de login */
+    .login-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #101010;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      margin: 20px 0;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
-    .user-login input {
+    .login-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .login-input {
       padding: 10px;
       border-radius: 15px;
       border: none;
       outline: none;
       width: 300px;
       text-align: center;
+      margin-bottom: 10px;
     }
 
-    .profile-pic {
-      display: flex;
-      justify-content: center;
-      margin: 10px;
+    .login-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      background-color: #2e2e2e;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    .profile-pic img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid white;
+    .login-button:hover {
+      background-color: #3f3f3f;
     }
   </style>
 </head>
 <body>
+  <!-- Pantalla de inicio de sesión -->
+  <div class="login-screen" id="loginScreen">
+    <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
+    <input type="text" id="profilePicInput" class="login-input" placeholder="URL de tu foto de perfil" />
+    <button class="login-button" onclick="enterSite()">Entrar</button>
+  </div>
+
+  <!-- Encabezado con menú y perfil -->
   <header>
     <nav class="menu">
       <a href="musica.html">Música</a>
@@ -116,23 +159,18 @@
       <a href="series.html">Series</a>
       <a href="juegos.html">Juegos</a>
     </nav>
+    <div class="user-info">
+      <span id="usernameDisplay">Usuario</span>
+      <img id="profileImage" src="https://via.placeholder.com/40" alt="Foto perfil" />
+    </div>
   </header>
 
-  <div class="user-login">
-    <input type="text" placeholder="Ingresa tu nombre de usuario" />
-  </div>
-
-  <div class="profile-pic">
-    <!-- Cambia este src por el enlace de la foto de perfil del usuario -->
-    <img src="https://via.placeholder.com/100" alt="Foto de perfil" />
-  </div>
-
+  <!-- Contenido principal -->
   <div class="container">
-    <!-- Sección de Música -->
+    <!-- Música -->
     <div class="section">
       <div class="section-title">Música</div>
       <div class="card-row">
-        <!-- Reemplaza el src con tus enlaces de imágenes -->
         <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 1" /></div>
         <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 2" /></div>
         <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 3" /></div>
@@ -143,7 +181,7 @@
       </div>
     </div>
 
-    <!-- Sección de Películas -->
+    <!-- Películas -->
     <div class="section">
       <div class="section-title">Películas</div>
       <div class="card-row">
@@ -157,7 +195,7 @@
       </div>
     </div>
 
-    <!-- Sección de Series -->
+    <!-- Series -->
     <div class="section">
       <div class="section-title">Series</div>
       <div class="card-row">
@@ -171,7 +209,7 @@
       </div>
     </div>
 
-    <!-- Sección de Juegos -->
+    <!-- Juegos -->
     <div class="section">
       <div class="section-title">Juegos</div>
       <div class="card-row">
@@ -185,5 +223,17 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function enterSite() {
+      const username = document.getElementById('usernameInput').value.trim();
+      const profilePic = document.getElementById('profilePicInput').value.trim();
+      if (username) {
+        document.getElementById('usernameDisplay').innerText = username;
+        document.getElementById('profileImage').src = profilePic || 'https://via.placeholder.com/40';
+        document.getElementById('loginScreen').classList.add('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
