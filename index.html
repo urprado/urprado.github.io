@@ -13,6 +13,20 @@
       overflow-x: hidden;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://cdn.avpasion.com/wp-content/uploads/2024/02/netflix-presenta-catalogo-peliculas-para-2024-01.jpg'); /* CAMBIA ESTA URL */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.8;
+      z-index: -1;
+    }
+
     header {
       position: fixed;
       top: 0;
@@ -116,7 +130,7 @@
     .card {
       flex: 0 0 auto;
       width: 180px;
-      height: 260px;
+      height: 180px;
       background-color: #1e1e1e;
       border-radius: 20px;
       overflow: hidden;
@@ -134,7 +148,6 @@
       object-fit: cover;
     }
 
-    /* Pantalla de login */
     .login-screen {
       position: fixed;
       top: 0;
@@ -165,7 +178,7 @@
       margin-bottom: 10px;
     }
 
-    .login-button {
+    .login-button, .choose-button {
       padding: 10px 20px;
       border: none;
       border-radius: 15px;
@@ -173,9 +186,10 @@
       color: white;
       cursor: pointer;
       transition: background-color 0.3s;
+      margin: 5px;
     }
 
-    .login-button:hover {
+    .login-button:hover, .choose-button:hover {
       background-color: #3f3f3f;
     }
   </style>
@@ -184,7 +198,10 @@
   <!-- Pantalla de inicio de sesión -->
   <div class="login-screen" id="loginScreen">
     <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
-    <button class="login-button" onclick="enterSite()">Entrar</button>
+    <div>
+      <button class="login-button" onclick="enterSite()">Entrar</button>
+      <button class="choose-button" onclick="window.location.href='elegir-foto.html'">Elegir foto de perfil</button>
+    </div>
   </div>
 
   <!-- Encabezado con menú y perfil -->
@@ -205,82 +222,18 @@
 
   <!-- Contenido principal -->
   <div class="container">
-    <!-- Secciones tipo Netflix -->
-    <div class="section">
-      <div class="section-title">Serie 1</div>
-      <div class="profile-selection">
-        <div class="profile-option"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCN4SOI6dyBXX5Tkw1EuHnUeyJrICdn6bOCQ&s" alt="Serie 1 - Opción 1"></div>
-        <div class="profile-option"><img src="https://example.com/serie1-opcion2.jpg" alt="Serie 1 - Opción 2"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Serie 2</div>
-      <div class="profile-selection">
-        <div class="profile-option"><img src="https://example.com/serie2-opcion1.jpg" alt="Serie 2 - Opción 1"></div>
-        <div class="profile-option"><img src="https://example.com/serie2-opcion2.jpg" alt="Serie 2 - Opción 2"></div>
-      </div>
-    </div>
-
-    <!-- Estilo PS5 para contenido principal -->
-    <div class="section">
-      <div class="section-title">Música</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Películas</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Series</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Juegos</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego"></div>
-      </div>
-    </div>
+    <!-- Aquí va el resto del contenido que ya tienes -->
   </div>
 
   <script>
     function enterSite() {
       const username = document.getElementById('usernameInput').value.trim();
+      const storedImage = localStorage.getItem('profileImage');
       if (username) {
         document.getElementById('usernameDisplay').innerText = username;
+        if (storedImage) {
+          document.getElementById('profileImage').src = storedImage;
+        }
         document.getElementById('loginScreen').classList.add('hidden');
       }
     }
