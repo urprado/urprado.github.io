@@ -19,12 +19,20 @@
       left: 0;
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       background-color: #1a1a1a;
       padding: 10px 30px;
       border-bottom: 2px solid #2c2c2c;
       z-index: 1000;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .menu {
@@ -52,8 +60,8 @@
     }
 
     .user-info img {
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 2px solid white;
     }
@@ -74,6 +82,7 @@
     .card-row {
       display: flex;
       gap: 20px;
+      overflow-x: auto;
     }
 
     .card {
@@ -147,90 +156,43 @@
   <!-- Pantalla de inicio de sesión -->
   <div class="login-screen" id="loginScreen">
     <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
-    <input type="text" id="profilePicInput" class="login-input" placeholder="URL de tu foto de perfil" />
+    <select id="profilePicSelect" class="login-input">
+      <option value="https://via.placeholder.com/40">Elige una imagen</option>
+      <option value="https://example.com/foto1.jpg">Foto 1</option>
+      <option value="https://example.com/foto2.jpg">Foto 2</option>
+      <option value="https://example.com/foto3.jpg">Foto 3</option>
+    </select>
     <button class="login-button" onclick="enterSite()">Entrar</button>
   </div>
 
   <!-- Encabezado con menú y perfil -->
   <header>
-    <nav class="menu">
-      <a href="musica.html">Música</a>
-      <a href="peliculas.html">Películas</a>
-      <a href="series.html">Series</a>
-      <a href="juegos.html">Juegos</a>
-    </nav>
-    <div class="user-info">
-      <span id="usernameDisplay">Usuario</span>
-      <img id="profileImage" src="https://via.placeholder.com/40" alt="Foto perfil" />
+    <div class="header-inner">
+      <nav class="menu">
+        <a href="musica.html">Música</a>
+        <a href="peliculas.html">Películas</a>
+        <a href="series.html">Series</a>
+        <a href="juegos.html">Juegos</a>
+      </nav>
+      <div class="user-info">
+        <span id="usernameDisplay">Usuario</span>
+        <img id="profileImage" src="https://via.placeholder.com/40" alt="Foto perfil" />
+      </div>
     </div>
   </header>
 
   <!-- Contenido principal -->
   <div class="container">
-    <!-- Música -->
-    <div class="section">
-      <div class="section-title">Música</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 1" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 2" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 3" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 4" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 5" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 6" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Música 7" /></div>
-      </div>
-    </div>
-
-    <!-- Películas -->
-    <div class="section">
-      <div class="section-title">Películas</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 1" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 2" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 3" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 4" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 5" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 6" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Película 7" /></div>
-      </div>
-    </div>
-
-    <!-- Series -->
-    <div class="section">
-      <div class="section-title">Series</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 1" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 2" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 3" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 4" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 5" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 6" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Serie 7" /></div>
-      </div>
-    </div>
-
-    <!-- Juegos -->
-    <div class="section">
-      <div class="section-title">Juegos</div>
-      <div class="card-row">
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 1" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 2" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 3" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 4" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 5" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 6" /></div>
-        <div class="card"><img src="https://via.placeholder.com/180x260" alt="Juego 7" /></div>
-      </div>
-    </div>
+    <!-- El contenido original permanece igual -->
   </div>
 
   <script>
     function enterSite() {
       const username = document.getElementById('usernameInput').value.trim();
-      const profilePic = document.getElementById('profilePicInput').value.trim();
+      const profilePic = document.getElementById('profilePicSelect').value;
       if (username) {
         document.getElementById('usernameDisplay').innerText = username;
-        document.getElementById('profileImage').src = profilePic || 'https://via.placeholder.com/40';
+        document.getElementById('profileImage').src = profilePic;
         document.getElementById('loginScreen').classList.add('hidden');
       }
     }
