@@ -41,11 +41,12 @@
     }
     main {
       padding: 100px 30px 60px;
-      max-width: 1200px;
+      max-width: 100%;
       margin: auto;
     }
     .section {
       margin-bottom: 80px;
+      position: relative;
     }
     .section-header {
       display: flex;
@@ -61,15 +62,15 @@
       text-decoration: none;
       font-size: 0.9em;
     }
+    .card-container {
+      position: relative;
+    }
     .card-grid {
       display: flex;
       gap: 25px;
-      overflow-x: auto;
+      overflow-x: hidden;
       padding-bottom: 10px;
       scroll-behavior: smooth;
-    }
-    .card-grid::-webkit-scrollbar {
-      display: none;
     }
     .card {
       flex: 0 0 auto;
@@ -89,6 +90,28 @@
       height: 100%;
       object-fit: cover;
     }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+    .arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .arrow.left {
+      left: -10px;
+    }
+    .arrow.right {
+      right: -10px;
+    }
   </style>
 </head>
 <body>
@@ -100,75 +123,39 @@
       <a href="juegos.html">Juegos</a>
     </nav>
   </header>
-
   <main>
-    <!-- Sección Películas -->
+
+    <!-- Sección de ejemplo con flechas -->
     <section class="section">
       <div class="section-header">
         <h2>Películas</h2>
         <a class="catalogo-link" href="peliculas.html">Ver catálogo</a>
       </div>
-      <div class="card-grid">
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_1" alt="P1"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_2" alt="P2"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_3" alt="P3"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_4" alt="P4"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_5" alt="P5"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_6" alt="P6"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_7" alt="P7"></a>
+      <div class="card-container">
+        <button class="arrow left" onclick="scrollGrid(this, -1)">&#10094;</button>
+        <div class="card-grid">
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_1"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_2"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_3"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_4"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_5"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_6"></a>
+          <a class="card" href="#"><img src="URL_DE_LA_IMAGEN_7"></a>
+        </div>
+        <button class="arrow right" onclick="scrollGrid(this, 1)">&#10095;</button>
       </div>
     </section>
 
-    <!-- Sección Series -->
-    <section class="section">
-      <div class="section-header">
-        <h2>Series</h2>
-        <a class="catalogo-link" href="series.html">Ver catálogo</a>
-      </div>
-      <div class="card-grid">
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_8" alt="S1"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_9" alt="S2"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_10" alt="S3"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_11" alt="S4"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_12" alt="S5"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_13" alt="S6"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_14" alt="S7"></a>
-      </div>
-    </section>
+    <!-- Repite para Series, Música y Juegos -->
 
-    <!-- Sección Música -->
-    <section class="section">
-      <div class="section-header">
-        <h2>Música</h2>
-        <a class="catalogo-link" href="musica.html">Ver catálogo</a>
-      </div>
-      <div class="card-grid">
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_15" alt="M1"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_16" alt="M2"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_17" alt="M3"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_18" alt="M4"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_19" alt="M5"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_20" alt="M6"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_21" alt="M7"></a>
-      </div>
-    </section>
-
-    <!-- Sección Juegos -->
-    <section class="section">
-      <div class="section-header">
-        <h2>Juegos</h2>
-        <a class="catalogo-link" href="juegos.html">Ver catálogo</a>
-      </div>
-      <div class="card-grid">
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_22" alt="J1"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_23" alt="J2"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_24" alt="J3"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_25" alt="J4"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_26" alt="J5"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_27" alt="J6"></a>
-        <a class="card" href="https://example.com"><img src="URL_DE_LA_IMAGEN_28" alt="J7"></a>
-      </div>
-    </section>
   </main>
+
+  <script>
+    function scrollGrid(button, direction) {
+      const grid = button.parentElement.querySelector('.card-grid');
+      const scrollAmount = 250 * direction;
+      grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
