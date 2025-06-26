@@ -64,10 +64,15 @@
     .card-grid {
       display: flex;
       gap: 25px;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-behavior: smooth;
+    }
+    .card-grid::-webkit-scrollbar {
+      display: none;
     }
     .card {
+      flex: 0 0 auto;
       width: 220px;
       height: 220px;
       border-radius: 20px;
