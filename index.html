@@ -20,7 +20,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('https://cdn.avpasion.com/wp-content/uploads/2024/02/netflix-presenta-catalogo-peliculas-para-2024-01.jpg'); /* CAMBIA ESTA URL */
+      background-image: url('URL_DE_TU_FONDO.jpg'); /* CAMBIA ESTA URL */
       background-size: cover;
       background-position: center;
       opacity: 0.8;
@@ -98,27 +98,57 @@
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
     }
 
     .profile-option {
-      width: 150px;
-      height: 150px;
+      width: 100px;
+      height: 100px;
       border-radius: 20px;
       overflow: hidden;
       background-color: #1e1e1e;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
+      position: relative;
     }
 
     .profile-option:hover {
-      transform: scale(1.05);
+      transform: scale(1.2);
     }
 
     .profile-option img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .floating-text {
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: #00ccff;
+      opacity: 0;
+      animation: floatUp 2s ease forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
     }
 
     .card-row {
@@ -192,6 +222,13 @@
     .login-button:hover, .choose-button:hover {
       background-color: #3f3f3f;
     }
+
+    #profileChooser {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -200,7 +237,20 @@
     <input type="text" id="usernameInput" class="login-input" placeholder="Ingresa tu nombre de usuario" />
     <div>
       <button class="login-button" onclick="enterSite()">Entrar</button>
-      <button class="choose-button" onclick="window.location.href='elegir-foto.html'">Elegir foto de perfil</button>
+      <button class="choose-button" onclick="toggleProfileChooser()">Elegir foto de perfil</button>
+    </div>
+
+    <div id="profileChooser" class="profile-selection">
+      <!-- AQUÍ PONES TUS FOTOS DE PERFIL -->
+      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto1.jpg')">
+        <img src="https://example.com/foto1.jpg" alt="Foto 1">
+      </div>
+      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto2.jpg')">
+        <img src="https://example.com/foto2.jpg" alt="Foto 2">
+      </div>
+      <div class="profile-option" onclick="selectProfileImage(this, 'https://example.com/foto3.jpg')">
+        <img src="https://example.com/foto3.jpg" alt="Foto 3">
+      </div>
     </div>
   </div>
 
@@ -236,6 +286,26 @@
         }
         document.getElementById('loginScreen').classList.add('hidden');
       }
+    }
+
+    function toggleProfileChooser() {
+      const chooser = document.getElementById('profileChooser');
+      chooser.style.display = chooser.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function selectProfileImage(element, url) {
+      localStorage.setItem('profileImage', url);
+      document.getElementById('profileImage').src = url;
+      toggleProfileChooser();
+
+      const text = document.createElement('div');
+      text.className = 'floating-text';
+      text.textContent = '¡Qué buen gusto!';
+      element.appendChild(text);
+
+      setTimeout(() => {
+        text.remove();
+      }, 2000);
     }
   </script>
 </body>
