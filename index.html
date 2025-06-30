@@ -127,7 +127,10 @@
 
 <!-- Sección con tarjetas altas tipo póster para películas -->
 <div class="section">
-  <div class="section-title">Películas destacadas</div>
+  <div class="section-title">
+    <span>Películas destacadas</span>
+    <a href="peliculas.html" class="catalog-link">Ver catálogo</a>
+  </div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
     <div class="tall-card-row card-scroll-row">
@@ -142,7 +145,10 @@
 
 <!-- Sección con tarjetas altas para series -->
 <div class="section">
-  <div class="section-title">Series destacadas</div>
+  <div class="section-title">
+    <span>Series destacadas</span>
+    <a href="series.html" class="catalog-link">Ver catálogo</a>
+  </div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
     <div class="tall-card-row card-scroll-row">
@@ -157,7 +163,10 @@
 
 <!-- Sección con tarjetas altas para juegos -->
 <div class="section">
-  <div class="section-title">Juegos destacados</div>
+  <div class="section-title">
+    <span>Juegos destacados</span>
+    <a href="juegos.html" class="catalog-link">Ver catálogo</a>
+  </div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
     <div class="tall-card-row card-scroll-row">
@@ -172,7 +181,10 @@
 
 <!-- Sección con tarjetas cuadradas para música -->
 <div class="section">
-  <div class="section-title">Música destacada</div>
+  <div class="section-title">
+    <span>Música destacada</span>
+    <a href="musica.html" class="catalog-link">Ver catálogo</a>
+  </div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollSquare(this, -1)">&#10094;</button>
     <div class="square-card-row card-scroll-row">
@@ -250,6 +262,26 @@
   .square-card:hover {
     transform: scale(1.05);
   }
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    color: white;
+    margin: 20px 0 10px;
+  }
+  .catalog-link {
+    font-size: 0.9em;
+    color: #00bfff;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    transition: background-color 0.2s;
+  }
+  .catalog-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 </style>
 
 <script>
@@ -264,5 +296,6 @@
     row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   }
 </script>
+
 </body>
 </html>
