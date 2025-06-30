@@ -130,7 +130,7 @@
   <div class="section-title">Películas destacadas</div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row" style="scrollbar-width: none;">
+    <div class="tall-card-row card-scroll-row">
       <div class="tall-card"><img src="URL_PELICULA_1.jpg" alt="Pelicula 1"></div>
       <div class="tall-card"><img src="URL_PELICULA_2.jpg" alt="Pelicula 2"></div>
       <div class="tall-card"><img src="URL_PELICULA_3.jpg" alt="Pelicula 3"></div>
@@ -145,7 +145,7 @@
   <div class="section-title">Series destacadas</div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row" style="scrollbar-width: none;">
+    <div class="tall-card-row card-scroll-row">
       <div class="tall-card"><img src="URL_SERIE_1.jpg" alt="Serie 1"></div>
       <div class="tall-card"><img src="URL_SERIE_2.jpg" alt="Serie 2"></div>
       <div class="tall-card"><img src="URL_SERIE_3.jpg" alt="Serie 3"></div>
@@ -160,7 +160,7 @@
   <div class="section-title">Juegos destacados</div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row" style="scrollbar-width: none;">
+    <div class="tall-card-row card-scroll-row">
       <div class="tall-card"><img src="URL_JUEGO_1.jpg" alt="Juego 1"></div>
       <div class="tall-card"><img src="URL_JUEGO_2.jpg" alt="Juego 2"></div>
       <div class="tall-card"><img src="URL_JUEGO_3.jpg" alt="Juego 3"></div>
@@ -175,7 +175,7 @@
   <div class="section-title">Música destacada</div>
   <div style="position: relative;">
     <button class="arrow left" onclick="scrollSquare(this, -1)">&#10094;</button>
-    <div class="square-card-row" style="display: flex; gap: 20px; overflow-x: hidden; scrollbar-width: none;">
+    <div class="square-card-row card-scroll-row">
       <div class="square-card"><img src="URL_MUSICA_1.jpg" alt="Música 1"></div>
       <div class="square-card"><img src="URL_MUSICA_2.jpg" alt="Música 2"></div>
       <div class="square-card"><img src="URL_MUSICA_3.jpg" alt="Música 3"></div>
@@ -205,8 +205,15 @@
   .arrow.right {
     right: -10px;
   }
-  .tall-card-row::-webkit-scrollbar,
-  .square-card-row::-webkit-scrollbar {
+  .card-scroll-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    scrollbar-width: none;
+  }
+  .card-scroll-row::-webkit-scrollbar {
     display: none;
   }
   .tall-card {
@@ -224,10 +231,6 @@
     height: 100%;
     object-fit: cover;
   }
-  .tall-card:hover,
-  .square-card:hover {
-    transform: scale(1.05);
-  }
   .square-card {
     flex: 0 0 auto;
     width: 180px;
@@ -243,6 +246,10 @@
     height: 100%;
     object-fit: cover;
   }
+  .tall-card:hover,
+  .square-card:hover {
+    transform: scale(1.05);
+  }
 </style>
 
 <script>
@@ -257,6 +264,5 @@
     row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   }
 </script>
-
 </body>
 </html>
