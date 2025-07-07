@@ -133,18 +133,22 @@
       color: #fff;
     }
 
-    /* Contenedor scroll horizontal de tarjetas */
-    .scroll-container {
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 0 10px;
-      scrollbar-width: none; /* Firefox */
-    }
-    .scroll-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari y Opera */
-    }
+/* Contenedor scroll horizontal de tarjetas */
+.scroll-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 10px; /* aumenté padding vertical para dar espacio */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: visible; /* permito crecimiento vertical visible */
+}
+
+/* Asegurar que las tarjetas estén centradas verticalmente */
+.scroll-container > .card,
+.scroll-container > .square-card {
+  align-self: flex-start; /* para que el crecimiento no corte arriba */
+}
 
     /* Flechas circulares */
     .arrow-btn {
