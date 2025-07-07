@@ -20,13 +20,49 @@
       height: 60px;
       background: #181818;
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 30px;
+      justify-content: center;
       width: 100%;
       max-width: 1200px;
       z-index: 1000;
       box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    nav .nav-buttons {
+      display: flex;
+      gap: 30px;
+      transition: transform 0.4s ease;
+    }
+    nav.search-open .nav-buttons {
+      transform: translateX(-100px);
+    }
+    nav .search-container {
+      position: absolute;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .search-container input {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      width: 0;
+      opacity: 0;
+      transition: width 0.4s ease, opacity 0.4s ease;
+      background: #fff;
+      color: #121212;
+    }
+    .search-container.open input {
+      width: 180px;
+      opacity: 1;
+      margin-left: 10px;
+    }
+    .search-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      fill: #fff;
     }
     nav button {
       background: transparent;
@@ -53,36 +89,7 @@
     }
     header {
       margin-top: 80px;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    .search-container {
-      position: relative;
-      transition: width 0.3s ease;
-    }
-    .search-container input {
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      width: 0;
-      opacity: 0;
-      transition: width 0.4s ease, opacity 0.4s ease;
-      background: #fff;
-      color: #121212;
-    }
-    .search-container.open input {
-      width: 220px;
-      opacity: 1;
-      margin-left: 10px;
-    }
-    .search-button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      fill: #fff;
+      padding: 0 20px;
     }
     main {
       padding: 20px;
@@ -165,15 +172,14 @@
   </style>
 </head>
 <body>
-  <nav>
-    <button onclick="location.href='index.html'">Inicio</button>
-    <button onclick="location.href='peliculas.html'">Películas</button>
-    <button class="active" onclick="location.href='musica.html'">Música</button>
-    <button onclick="location.href='series.html'">Series</button>
-    <button onclick="location.href='juegos.html'">Juegos</button>
-  </nav>
-
-  <header>
+  <nav id="mainNav">
+    <div class="nav-buttons">
+      <button onclick="location.href='index.html'">Inicio</button>
+      <button onclick="location.href='peliculas.html'">Películas</button>
+      <button class="active" onclick="location.href='musica.html'">Música</button>
+      <button onclick="location.href='series.html'">Series</button>
+      <button onclick="location.href='juegos.html'">Juegos</button>
+    </div>
     <div class="search-container" id="searchContainer">
       <button class="search-button" onclick="toggleSearch()">
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -182,7 +188,9 @@
       </button>
       <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
     </div>
-  </header>
+  </nav>
+
+  <header></header>
 
   <main>
     <section>
@@ -233,9 +241,12 @@
         cuadro.style.display = texto.includes(filtro) ? 'block' : 'none';
       });
     }
+
     function toggleSearch() {
+      const nav = document.getElementById('mainNav');
       const container = document.getElementById('searchContainer');
       container.classList.toggle('open');
+      nav.classList.toggle('search-open');
       const input = container.querySelector('input');
       if (container.classList.contains('open')) {
         input.focus();
