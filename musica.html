@@ -9,8 +9,24 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
+      background: #121212;
       color: #eee;
+      overflow-x: hidden;
+    }
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      fill: #eee;
+      cursor: pointer;
+      z-index: 1100;
+      user-select: none;
+      transition: fill 0.3s;
+    }
+    .logo:hover {
+      fill: #fff;
     }
     nav {
       position: fixed;
@@ -89,7 +105,6 @@
     }
     header {
       margin-top: 80px;
-      padding: 0 20px;
     }
     main {
       padding: 20px;
@@ -97,13 +112,13 @@
       margin: auto;
     }
     section {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
     section h2 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #333;
-      padding-bottom: 6px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+      margin: 0 10px 15px 10px;
     }
     .scroll-wrapper {
       position: relative;
@@ -172,6 +187,14 @@
   </style>
 </head>
 <body>
+  <!-- Ícono TV -->
+  <svg class="logo" viewBox="0 0 64 64" aria-label="Uploads Logo" role="img" tabindex="0">
+    <rect x="8" y="14" width="48" height="36" rx="6" ry="6" stroke="#eee" stroke-width="3" fill="none"/>
+    <line x1="20" y1="10" x2="28" y2="20" stroke="#eee" stroke-width="3" />
+    <line x1="44" y1="10" x2="36" y2="20" stroke="#eee" stroke-width="3" />
+    <rect x="24" y="26" width="16" height="12" rx="2" ry="2" fill="#eee" />
+  </svg>
+
   <nav id="mainNav">
     <div class="nav-buttons">
       <button onclick="location.href='index.html'">Inicio</button>
@@ -189,8 +212,6 @@
       <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
     </div>
   </nav>
-
-  <header></header>
 
   <main>
     <section>
@@ -241,7 +262,6 @@
         cuadro.style.display = texto.includes(filtro) ? 'block' : 'none';
       });
     }
-
     function toggleSearch() {
       const nav = document.getElementById('mainNav');
       const container = document.getElementById('searchContainer');
