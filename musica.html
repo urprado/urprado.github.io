@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Música | UPLoads</title>
+  <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/5c/a0/c0/5ca0c050cdfc5774dc5a3316f74b036e.jpg" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Barra de navegación */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      background-color: #181818;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #bbb;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav button:hover:not(.active) {
+      background-color: #333;
+      color: #fff;
+    }
+
+    nav button.active {
+      background-color: #fff;
+      color: #121212;
+      font-weight: 700;
+    }
+
+    main {
+      padding-top: 80px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Buscador */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search-container input {
+      width: 80%;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      margin: 0 10px 15px;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .scroll-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 10px;
+      scrollbar-width: none;
+      overflow-y: visible;
+    }
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .square-card {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .square-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .square-card:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    .btns-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .square-card:hover .btns-overlay {
+      opacity: 1;
+    }
+
+    .btns-overlay button {
+      background-color: #fff;
+      color: #121212;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="location.href='inicio.html'">Inicio</button>
+    <button onclick="location.href='peliculas.html'">Películas</button>
+    <button class="active">Música</button>
+    <button onclick="location.href='series.html'">Series</button>
+    <button onclick="location.href='juegos.html'">Juegos</button>
+  </nav>
+
+  <main>
+    <div class="search-container">
+      <input type="text" placeholder="Buscar artista o álbum..." />
+    </div>
+
+    <section>
+      <h2>Artistas A → Z</h2>
+      <div class="scroll-wrapper">
+        <div class="scroll-container">
+          <div class="square-card">
+            <img src="images/artista1.jpg" alt="Artista 1">
+            <div class="btns-overlay">
+              <button onclick="location.href='artista1.html'">Ver</button>
+            </div>
+          </div>
+          <!-- 9 artistas más -->
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Álbumes A → Z</h2>
+      <div class="scroll-wrapper">
+        <div class="scroll-container">
+          <div class="square-card">
+            <img src="images/album1.jpg" alt="Álbum 1">
+            <div class="btns-overlay">
+              <button onclick="location.href='album1.html'">Ver</button>
+            </div>
+          </div>
+          <!-- 9 álbumes más -->
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
