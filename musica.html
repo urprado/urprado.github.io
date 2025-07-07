@@ -12,15 +12,51 @@
       background-color: #121212;
       color: #eee;
     }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      background: #181818;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: #bbb;
+      font-size: 1rem;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    nav button:hover:not(.active) {
+      background-color: #333;
+      color: #fff;
+    }
+    nav button.active {
+      background-color: #fff;
+      color: #121212;
+      cursor: default;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
     header {
-      background-color: #181818;
+      margin-top: 80px;
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     header h1 {
       margin: 0;
@@ -46,10 +82,18 @@
       border-bottom: 1px solid #333;
       padding-bottom: 6px;
     }
+    .scroll-wrapper {
+      position: relative;
+    }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      display: flex;
       gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px 0;
+    }
+    .grid::-webkit-scrollbar {
+      display: none;
     }
     .square {
       background-color: #222;
@@ -58,6 +102,7 @@
       cursor: pointer;
       box-shadow: 0 3px 6px rgba(0,0,0,0.5);
       transition: transform 0.2s;
+      flex: 0 0 140px;
     }
     .square:hover {
       transform: scale(1.05);
@@ -74,9 +119,44 @@
       text-align: center;
       font-weight: 600;
     }
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .arrow-left {
+      left: -20px;
+    }
+    .arrow-right {
+      right: -20px;
+    }
+    .arrow-btn svg {
+      fill: #121212;
+      width: 16px;
+      height: 16px;
+    }
   </style>
 </head>
 <body>
+  <nav>
+    <button onclick="location.href='index.html'">Inicio</button>
+    <button onclick="location.href='peliculas.html'">Películas</button>
+    <button class="active" onclick="location.href='musica.html'">Música</button>
+    <button onclick="location.href='series.html'">Series</button>
+    <button onclick="location.href='juegos.html'">Juegos</button>
+  </nav>
+
   <header>
     <h1>Música | UPLoads</h1>
     <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
@@ -84,24 +164,40 @@
 
   <main>
     <section>
-      <h2>Artistas A &rarr; Z</h2>
-      <div class="grid" id="artistas">
-        <div class="square"><img src="images/artista1.jpg" alt="Artista 1"><p>Artista 1</p></div>
-        <div class="square"><img src="images/artista2.jpg" alt="Artista 2"><p>Artista 2</p></div>
-        <div class="square"><img src="images/artista3.jpg" alt="Artista 3"><p>Artista 3</p></div>
-        <div class="square"><img src="images/artista4.jpg" alt="Artista 4"><p>Artista 4</p></div>
-        <div class="square"><img src="images/artista5.jpg" alt="Artista 5"><p>Artista 5</p></div>
+      <h2>Artistas A → Z</h2>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" onclick="document.getElementById('artistas').scrollBy({left: -300, behavior: 'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="grid" id="artistas">
+          <div class="square"><img src="images/artista1.jpg" alt="Artista 1"><p>Artista 1</p></div>
+          <div class="square"><img src="images/artista2.jpg" alt="Artista 2"><p>Artista 2</p></div>
+          <div class="square"><img src="images/artista3.jpg" alt="Artista 3"><p>Artista 3</p></div>
+          <div class="square"><img src="images/artista4.jpg" alt="Artista 4"><p>Artista 4</p></div>
+          <div class="square"><img src="images/artista5.jpg" alt="Artista 5"><p>Artista 5</p></div>
+        </div>
+        <button class="arrow-btn arrow-right" onclick="document.getElementById('artistas').scrollBy({left: 300, behavior: 'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
       </div>
     </section>
 
     <section>
-      <h2>Álbumes A &rarr; Z</h2>
-      <div class="grid" id="albumes">
-        <div class="square"><img src="images/album1.jpg" alt="Álbum 1"><p>Álbum 1</p></div>
-        <div class="square"><img src="images/album2.jpg" alt="Álbum 2"><p>Álbum 2</p></div>
-        <div class="square"><img src="images/album3.jpg" alt="Álbum 3"><p>Álbum 3</p></div>
-        <div class="square"><img src="images/album4.jpg" alt="Álbum 4"><p>Álbum 4</p></div>
-        <div class="square"><img src="images/album5.jpg" alt="Álbum 5"><p>Álbum 5</p></div>
+      <h2>Álbumes A → Z</h2>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" onclick="document.getElementById('albumes').scrollBy({left: -300, behavior: 'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="grid" id="albumes">
+          <div class="square"><img src="images/album1.jpg" alt="Álbum 1"><p>Álbum 1</p></div>
+          <div class="square"><img src="images/album2.jpg" alt="Álbum 2"><p>Álbum 2</p></div>
+          <div class="square"><img src="images/album3.jpg" alt="Álbum 3"><p>Álbum 3</p></div>
+          <div class="square"><img src="images/album4.jpg" alt="Álbum 4"><p>Álbum 4</p></div>
+          <div class="square"><img src="images/album5.jpg" alt="Álbum 5"><p>Álbum 5</p></div>
+        </div>
+        <button class="arrow-btn arrow-right" onclick="document.getElementById('albumes').scrollBy({left: 300, behavior: 'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
       </div>
     </section>
   </main>
