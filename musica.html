@@ -55,18 +55,34 @@
       margin-top: 80px;
       padding: 15px 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.2rem;
+    .search-container {
+      position: relative;
+      transition: width 0.3s ease;
     }
-    #searchBar {
+    .search-container input {
       padding: 8px 14px;
       border-radius: 6px;
       border: none;
       font-size: 1rem;
+      width: 0;
+      opacity: 0;
+      transition: width 0.4s ease, opacity 0.4s ease;
+      background: #fff;
+      color: #121212;
+    }
+    .search-container.open input {
+      width: 220px;
+      opacity: 1;
+      margin-left: 10px;
+    }
+    .search-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      fill: #fff;
     }
     main {
       padding: 20px;
@@ -158,8 +174,14 @@
   </nav>
 
   <header>
-    <h1>Música | UPLoads</h1>
-    <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
+    <div class="search-container" id="searchContainer">
+      <button class="search-button" onclick="toggleSearch()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z" />
+        </svg>
+      </button>
+      <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
+    </div>
   </header>
 
   <main>
@@ -210,6 +232,17 @@
         const texto = cuadro.innerText.toLowerCase();
         cuadro.style.display = texto.includes(filtro) ? 'block' : 'none';
       });
+    }
+    function toggleSearch() {
+      const container = document.getElementById('searchContainer');
+      container.classList.toggle('open');
+      const input = container.querySelector('input');
+      if (container.classList.contains('open')) {
+        input.focus();
+      } else {
+        input.value = '';
+        filtrarCuadrados();
+      }
     }
   </script>
 </body>
