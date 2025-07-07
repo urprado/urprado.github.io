@@ -4,202 +4,117 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Música | UPLoads</title>
-  <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/5c/a0/c0/5ca0c050cdfc5774dc5a3316f74b036e.jpg" />
+  <link rel="icon" type="image/png" href="https://static.thenounproject.com/png/3548799-200.png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #121212;
-      color: #fff;
-      overflow-x: hidden;
+      color: #eee;
     }
-
-    /* Barra de navegación */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 60px;
+    header {
       background-color: #181818;
+      padding: 15px 20px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 30px;
-      padding: 0 20px;
+      position: sticky;
+      top: 0;
       z-index: 1000;
     }
-
-    nav button {
-      background: none;
-      border: none;
-      color: #bbb;
-      font-size: 1rem;
-      cursor: pointer;
-      padding: 8px 16px;
+    header h1 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    #searchBar {
+      padding: 8px 14px;
       border-radius: 6px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
+      border: none;
+      font-size: 1rem;
     }
-
-    nav button:hover:not(.active) {
-      background-color: #333;
-      color: #fff;
-    }
-
-    nav button.active {
-      background-color: #fff;
-      color: #121212;
-      font-weight: 700;
-    }
-
     main {
-      padding-top: 80px;
-      max-width: 1200px;
+      padding: 20px;
+      max-width: 1000px;
       margin: auto;
     }
-
-    /* Buscador */
-    .search-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
-    .search-container input {
-      width: 80%;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-    }
-
     section {
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
-
     section h2 {
-      margin: 0 10px 15px;
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 6px;
     }
-
-    .scroll-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
     }
-
-    .scroll-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 20px 10px;
-      scrollbar-width: none;
-      overflow-y: visible;
-    }
-    .scroll-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .square-card {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      border-radius: 20px;
+    .square {
+      background-color: #222;
+      border-radius: 14px;
       overflow: hidden;
-      flex-shrink: 0;
-      transition: transform 0.3s;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
     }
-
-    .square-card img {
+    .square:hover {
+      transform: scale(1.05);
+    }
+    .square img {
       width: 100%;
-      height: 100%;
+      height: 140px;
       object-fit: cover;
-      border-radius: 20px;
       display: block;
     }
-
-    .square-card:hover {
-      transform: scale(1.1);
-      z-index: 2;
-    }
-
-    .btns-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .square-card:hover .btns-overlay {
-      opacity: 1;
-    }
-
-    .btns-overlay button {
-      background-color: #fff;
-      color: #121212;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+    .square p {
+      margin: 0;
+      padding: 10px;
+      text-align: center;
       font-weight: 600;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <button onclick="location.href='inicio.html'">Inicio</button>
-    <button onclick="location.href='peliculas.html'">Películas</button>
-    <button class="active">Música</button>
-    <button onclick="location.href='series.html'">Series</button>
-    <button onclick="location.href='juegos.html'">Juegos</button>
-  </nav>
+  <header>
+    <h1>Música | UPLoads</h1>
+    <input type="text" id="searchBar" placeholder="Buscar artistas o álbumes..." oninput="filtrarCuadrados()" />
+  </header>
 
   <main>
-    <div class="search-container">
-      <input type="text" placeholder="Buscar artista o álbum..." />
-    </div>
-
     <section>
-      <h2>Artistas A → Z</h2>
-      <div class="scroll-wrapper">
-        <div class="scroll-container">
-          <div class="square-card">
-            <img src="images/artista1.jpg" alt="Artista 1">
-            <div class="btns-overlay">
-              <button onclick="location.href='artista1.html'">Ver</button>
-            </div>
-          </div>
-          <!-- 9 artistas más -->
-        </div>
+      <h2>Artistas A &rarr; Z</h2>
+      <div class="grid" id="artistas">
+        <div class="square"><img src="images/artista1.jpg" alt="Artista 1"><p>Artista 1</p></div>
+        <div class="square"><img src="images/artista2.jpg" alt="Artista 2"><p>Artista 2</p></div>
+        <div class="square"><img src="images/artista3.jpg" alt="Artista 3"><p>Artista 3</p></div>
+        <div class="square"><img src="images/artista4.jpg" alt="Artista 4"><p>Artista 4</p></div>
+        <div class="square"><img src="images/artista5.jpg" alt="Artista 5"><p>Artista 5</p></div>
       </div>
     </section>
 
     <section>
-      <h2>Álbumes A → Z</h2>
-      <div class="scroll-wrapper">
-        <div class="scroll-container">
-          <div class="square-card">
-            <img src="images/album1.jpg" alt="Álbum 1">
-            <div class="btns-overlay">
-              <button onclick="location.href='album1.html'">Ver</button>
-            </div>
-          </div>
-          <!-- 9 álbumes más -->
-        </div>
+      <h2>Álbumes A &rarr; Z</h2>
+      <div class="grid" id="albumes">
+        <div class="square"><img src="images/album1.jpg" alt="Álbum 1"><p>Álbum 1</p></div>
+        <div class="square"><img src="images/album2.jpg" alt="Álbum 2"><p>Álbum 2</p></div>
+        <div class="square"><img src="images/album3.jpg" alt="Álbum 3"><p>Álbum 3</p></div>
+        <div class="square"><img src="images/album4.jpg" alt="Álbum 4"><p>Álbum 4</p></div>
+        <div class="square"><img src="images/album5.jpg" alt="Álbum 5"><p>Álbum 5</p></div>
       </div>
     </section>
   </main>
+
+  <script>
+    function filtrarCuadrados() {
+      const filtro = document.getElementById('searchBar').value.toLowerCase();
+      const cuadrados = document.querySelectorAll('.square');
+      cuadrados.forEach(cuadro => {
+        const texto = cuadro.innerText.toLowerCase();
+        cuadro.style.display = texto.includes(filtro) ? 'block' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
