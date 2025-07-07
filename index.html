@@ -1,295 +1,615 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPLoads</title>
-  <link rel="icon" href="https://img.icons8.com/?size=512&id=ORTeHm645Suq&format=png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicio | UPLoads</title>
   <style>
+    /* Reset y básicos */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      background-color: #101010;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
       overflow-x: hidden;
     }
-    header {
+
+    /* Barra fija */
+    nav {
       position: fixed;
       top: 0;
-      width: 100%;
-      background-color: #1a1a1a;
+      left: 0; right: 0;
+      height: 60px;
+      background: #181818;
       display: flex;
       justify-content: center;
-      padding: 15px 0;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    .menu {
-      display: flex;
       gap: 30px;
+      user-select: none;
     }
-    .menu a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      background-color: #2e2e2e;
-      border-radius: 15px;
-      transition: background-color 0.3s;
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: #bbb;
+      font-size: 1rem;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+      position: relative;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
-    .menu a:hover {
-      background-color: #3f3f3f;
+    nav button:hover:not(.active) {
+      background-color: #333;
+      color: #fff;
     }
+
+    /* Botón activo en blanco */
+    nav button.active {
+      background-color: #fff;
+      color: #121212;
+      cursor: default;
+    }
+
+    /* Orden de los botones (películas, series, inicio, juegos, música) */
+    nav button:nth-child(1) { order: 1; } /* Películas */
+    nav button:nth-child(2) { order: 2; } /* Series */
+    nav button:nth-child(3) { order: 3; } /* Inicio */
+    nav button:nth-child(4) { order: 4; } /* Juegos */
+    nav button:nth-child(5) { order: 5; } /* Música */
+
+    /* Centrar el botón inicio exactamente en el centro */
+    nav {
+      position: fixed;
+      width: 100%;
+      max-width: 1200px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    nav button.active {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* Icono minimalista de tele */
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      fill: #eee;
+      cursor: pointer;
+      z-index: 1100;
+      user-select: none;
+      transition: fill 0.3s;
+    }
+    .logo:hover {
+      fill: #fff;
+    }
+
+    /* Contenedor general para separar del nav */
     main {
-      padding: 100px 30px 60px;
-      max-width: 100%;
+      padding-top: 80px;
+      max-width: 1200px;
       margin: auto;
     }
-    .section {
-      margin-bottom: 80px;
-      position: relative;
+
+    /* Sección de categorías */
+    section {
+      margin-bottom: 50px;
     }
-    .section-header {
+
+    section > header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin: 0 10px 15px 10px;
     }
-    .section-header h2 {
-      margin: 0;
+
+    section > header h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
     }
-    .catalogo-link {
-      color: #00ccff;
+
+    section > header a {
+      font-size: 0.9rem;
+      color: #bbb;
       text-decoration: none;
-      font-size: 0.9em;
+      font-weight: 600;
+      transition: color 0.3s;
+      cursor: pointer;
+      user-select: none;
     }
-    .card-container {
-      position: relative;
+    section > header a:hover {
+      color: #fff;
     }
-    .card-grid {
+
+    /* Contenedor scroll horizontal de tarjetas */
+    .scroll-container {
       display: flex;
-      gap: 25px;
-      overflow-x: hidden;
-      padding-bottom: 10px;
+      gap: 15px;
+      overflow-x: auto;
       scroll-behavior: smooth;
+      padding: 0 10px;
+      scrollbar-width: none; /* Firefox */
     }
+    .scroll-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari y Opera */
+    }
+
+    /* Flechas circulares */
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      border: none;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s;
+      user-select: none;
+      z-index: 10;
+    }
+    .arrow-btn:hover {
+      background-color: #ddd;
+    }
+    .arrow-left {
+      left: 0;
+    }
+    .arrow-right {
+      right: 0;
+    }
+    .arrow-btn svg {
+      fill: #121212;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Estilos tarjetas verticales (pelis, series, juegos) */
     .card {
-      flex: 0 0 auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 20px;
-      background-color: #1e1e1e;
+      position: relative;
+      flex: 0 0 140px;
+      height: 210px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: scale(1.08);
+      cursor: pointer;
+      background: #222;
+      transition: transform 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+      user-select: none;
     }
     .card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+      border-radius: 14px;
+      transition: transform 0.3s ease;
     }
-    .arrow {
+    .card:hover {
+      transform: scale(1.08);
+      z-index: 5;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Botones que salen en hover */
+    .card .btns-overlay {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 8px;
+    }
+    .card:hover .btns-overlay {
+      display: flex;
+    }
+    .card .btns-overlay button {
+      padding: 6px 10px;
       border: none;
-      font-size: 24px;
-      padding: 10px;
+      border-radius: 6px;
+      background-color: #fff;
+      color: #121212;
+      font-weight: 600;
       cursor: pointer;
-      z-index: 10;
-      border-radius: 50%;
+      font-size: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      user-select: none;
+      transition: background-color 0.3s;
     }
-    .arrow:hover {
-      background: rgba(255, 255, 255, 0.2);
+    .card .btns-overlay button:hover {
+      background-color: #ddd;
     }
-    .arrow.left {
-      left: -10px;
+
+    /* Estilos cuadrados para música */
+    .square-card {
+      position: relative;
+      flex: 0 0 140px;
+      height: 140px;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #222;
+      transition: transform 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+      user-select: none;
     }
-    .arrow.right {
-      right: -10px;
+    .square-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+      transition: transform 0.3s ease;
     }
+    .square-card:hover {
+      transform: scale(1.08);
+      z-index: 5;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    }
+    .square-card .btns-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 8px;
+    }
+    .square-card:hover .btns-overlay {
+      display: flex;
+    }
+    .square-card .btns-overlay button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #fff;
+      color: #121212;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .square-card .btns-overlay button:hover {
+      background-color: #ddd;
+    }
+
+    /* Posicionamiento flechas en secciones */
+    .scroll-wrapper {
+      position: relative;
+    }
+
   </style>
 </head>
 <body>
-  <header>
-    <nav class="menu">
-      <a href="peliculas.html">Películas</a>
-      <a href="series.html">Series</a>
-      <a href="musica.html">Música</a>
-      <a href="juegos.html">Juegos</a>
-    </nav>
-  </header>
+
+  <!-- Ícono minimalista TV -->
+  <svg class="logo" viewBox="0 0 64 64" aria-label="Uploads Logo" role="img" tabindex="0">
+    <rect x="8" y="14" width="48" height="36" rx="6" ry="6" stroke="#eee" stroke-width="3" fill="none"/>
+    <line x1="20" y1="10" x2="28" y2="20" stroke="#eee" stroke-width="3" />
+    <line x1="44" y1="10" x2="36" y2="20" stroke="#eee" stroke-width="3" />
+    <rect x="24" y="26" width="16" height="12" rx="2" ry="2" fill="#eee" />
+  </svg>
+
+  <!-- Barra de navegación fija -->
+  <nav>
+    <button onclick="location.href='peliculas.html'">Películas</button>
+    <button onclick="location.href='series.html'">Series</button>
+    <button class="active" onclick="location.href='inicio.html'">Inicio</button>
+    <button onclick="location.href='juegos.html'">Juegos</button>
+    <button onclick="location.href='musica.html'">Música</button>
+  </nav>
+
   <main>
 
-<!-- Sección con tarjetas altas tipo póster para películas -->
-<div class="section">
-  <div class="section-title">
-    <span>Películas destacadas</span>
-    <a href="peliculas.html" class="catalog-link">Ver catálogo</a>
-  </div>
-  <div style="position: relative;">
-    <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row card-scroll-row">
-      <div class="tall-card"><img src="URL_PELICULA_1.jpg" alt="Pelicula 1"></div>
-      <div class="tall-card"><img src="URL_PELICULA_2.jpg" alt="Pelicula 2"></div>
-      <div class="tall-card"><img src="URL_PELICULA_3.jpg" alt="Pelicula 3"></div>
-      <div class="tall-card"><img src="URL_PELICULA_4.jpg" alt="Pelicula 4"></div>
-    </div>
-    <button class="arrow right" onclick="scrollTaller(this, 1)">&#10095;</button>
-  </div>
-</div>
+    <!-- Sección Películas: Recién estrenadas -->
+    <section>
+      <header>
+        <h2>Recién estrenadas</h2>
+        <a href="peliculas.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Recién estrenadas a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="reciEstrenadas">
+          <!-- Tarjetas verticales películas -->
+          <div class="card">
+            <img src="images/pelicula1.jpg" alt="Película 1" />
+            <div class="btns-overlay">
+              <button onclick="location.href='pelicula1.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/pelicula2.jpg" alt="Película 2" />
+            <div class="btns-overlay">
+              <button onclick="location.href='pelicula2.html'">Ver</button>
+            </div>
+          </div>
+          <!-- Puedes agregar más -->
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Recién estrenadas a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
 
-<!-- Sección con tarjetas altas para series -->
-<div class="section">
-  <div class="section-title">
-    <span>Series destacadas</span>
-    <a href="series.html" class="catalog-link">Ver catálogo</a>
-  </div>
-  <div style="position: relative;">
-    <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row card-scroll-row">
-      <div class="tall-card"><img src="URL_SERIE_1.jpg" alt="Serie 1"></div>
-      <div class="tall-card"><img src="URL_SERIE_2.jpg" alt="Serie 2"></div>
-      <div class="tall-card"><img src="URL_SERIE_3.jpg" alt="Serie 3"></div>
-      <div class="tall-card"><img src="URL_SERIE_4.jpg" alt="Serie 4"></div>
-    </div>
-    <button class="arrow right" onclick="scrollTaller(this, 1)">&#10095;</button>
-  </div>
-</div>
+    <!-- Sección Películas: Recomendaciones -->
+    <section>
+      <header>
+        <h2>Recomendaciones</h2>
+        <a href="peliculas.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Recomendaciones a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="recomendaciones">
+          <div class="card">
+            <img src="images/pelicula3.jpg" alt="Película 3" />
+            <div class="btns-overlay">
+              <button onclick="location.href='pelicula3.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/pelicula4.jpg" alt="Película 4" />
+            <div class="btns-overlay">
+              <button onclick="location.href='pelicula4.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Recomendaciones a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
 
-<!-- Sección con tarjetas altas para juegos -->
-<div class="section">
-  <div class="section-title">
-    <span>Juegos destacados</span>
-    <a href="juegos.html" class="catalog-link">Ver catálogo</a>
-  </div>
-  <div style="position: relative;">
-    <button class="arrow left" onclick="scrollTaller(this, -1)">&#10094;</button>
-    <div class="tall-card-row card-scroll-row">
-      <div class="tall-card"><img src="URL_JUEGO_1.jpg" alt="Juego 1"></div>
-      <div class="tall-card"><img src="URL_JUEGO_2.jpg" alt="Juego 2"></div>
-      <div class="tall-card"><img src="URL_JUEGO_3.jpg" alt="Juego 3"></div>
-      <div class="tall-card"><img src="URL_JUEGO_4.jpg" alt="Juego 4"></div>
-    </div>
-    <button class="arrow right" onclick="scrollTaller(this, 1)">&#10095;</button>
-  </div>
-</div>
+    <!-- Sección Series: Para un maratón -->
+    <section>
+      <header>
+        <h2>Para un maratón</h2>
+        <a href="series.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Para un maratón a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="paraMaraton">
+          <div class="card">
+            <img src="images/serie1.jpg" alt="Serie 1" />
+            <div class="btns-overlay">
+              <button onclick="location.href='serie1.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/serie2.jpg" alt="Serie 2" />
+            <div class="btns-overlay">
+              <button onclick="location.href='serie2.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Para un maratón a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
 
-<!-- Sección con tarjetas cuadradas para música -->
-<div class="section">
-  <div class="section-title">
-    <span>Música destacada</span>
-    <a href="musica.html" class="catalog-link">Ver catálogo</a>
-  </div>
-  <div style="position: relative;">
-    <button class="arrow left" onclick="scrollSquare(this, -1)">&#10094;</button>
-    <div class="square-card-row card-scroll-row">
-      <div class="square-card"><img src="URL_MUSICA_1.jpg" alt="Música 1"></div>
-      <div class="square-card"><img src="URL_MUSICA_2.jpg" alt="Música 2"></div>
-      <div class="square-card"><img src="URL_MUSICA_3.jpg" alt="Música 3"></div>
-      <div class="square-card"><img src="URL_MUSICA_4.jpg" alt="Música 4"></div>
-    </div>
-    <button class="arrow right" onclick="scrollSquare(this, 1)">&#10095;</button>
-  </div>
-</div>
+    <!-- Sección Series: No te las puedes perder -->
+    <section>
+      <header>
+        <h2>No te las puedes perder</h2>
+        <a href="series.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar No te las puedes perder a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="impSeries">
+          <div class="card">
+            <img src="images/serie3.jpg" alt="Serie 3" />
+            <div class="btns-overlay">
+              <button onclick="location.href='serie3.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/serie4.jpg" alt="Serie 4" />
+            <div class="btns-overlay">
+              <button onclick="location.href='serie4.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar No te las puedes perder a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
 
-<style>
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-  }
-  .arrow.left {
-    left: -10px;
-  }
-  .arrow.right {
-    right: -10px;
-  }
-  .card-scroll-row {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 10px 0;
-    scrollbar-width: none;
-  }
-  .card-scroll-row::-webkit-scrollbar {
-    display: none;
-  }
-  $1width: 180px;
-    height: 300px;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s;
-  }
-  .tall-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .square-card {
-    flex: 0 0 auto;
-    width: 180px;
-    height: 180px;
-    border-radius: 20px;
-    overflow: hidden;
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s;
-  }
-  .square-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .tall-card:hover,
-  .square-card:hover {
-    transform: scale(1.05);
-  }
-  .section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5em;
-    color: white;
-    margin: 20px 0 10px;
-  }
-  .catalog-link {
-    font-size: 14px;
-    color: white;
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    transition: color 0.2s;
-  }
-</style>
+    <!-- Sección Música: Los favoritos de siempre -->
+    <section>
+      <header>
+        <h2>Los favoritos de siempre</h2>
+        <a href="musica.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Los favoritos de siempre a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="favMusica">
+          <div class="square-card">
+            <img src="images/artista1.jpg" alt="Artista 1" />
+            <div class="btns-overlay">
+              <button onclick="location.href='artista1.html'">Ver</button>
+            </div>
+          </div>
+          <div class="square-card">
+            <img src="images/artista2.jpg" alt="Artista 2" />
+            <div class="btns-overlay">
+              <button onclick="location.href='artista2.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Los favoritos de siempre a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
 
-<script>
-  function scrollTaller(button, direction) {
-    const row = button.parentElement.querySelector('.tall-card-row');
-    const scrollAmount = 200 * direction;
-    row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  }
-  function scrollSquare(button, direction) {
-    const row = button.parentElement.querySelector('.square-card-row');
-    const scrollAmount = 200 * direction;
-    row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  }
-</script>
+    <!-- Sección Música: Debes escuchar -->
+    <section>
+      <header>
+        <h2>Debes escuchar</h2>
+        <a href="musica.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Debes escuchar a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="debesEscuchar">
+          <div class="square-card">
+            <img src="images/album1.jpg" alt="Álbum 1" />
+            <div class="btns-overlay">
+              <button onclick="location.href='album1.html'">Ver</button>
+            </div>
+          </div>
+          <div class="square-card">
+            <img src="images/album2.jpg" alt="Álbum 2" />
+            <div class="btns-overlay">
+              <button onclick="location.href='album2.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Debes escuchar a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección Juegos: Juegos Instantáneos -->
+    <section>
+      <header>
+        <h2>Juegos Instantáneos</h2>
+        <a href="juegos.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Juegos Instantáneos a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="juegosInstantaneos">
+          <div class="card">
+            <img src="images/juego1.jpg" alt="Juego 1" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego1.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/juego2.jpg" alt="Juego 2" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego2.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Juegos Instantáneos a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección Juegos: Principales juegos -->
+    <section>
+      <header>
+        <h2>Principales juegos</h2>
+        <a href="juegos.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Principales juegos a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="principalesJuegos">
+          <div class="card">
+            <img src="images/juego3.jpg" alt="Juego 3" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego3.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/juego4.jpg" alt="Juego 4" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego4.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Principales juegos a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Sección Juegos: Para pasar el rato -->
+    <section>
+      <header>
+        <h2>Para pasar el rato</h2>
+        <a href="juegos.html">Ver catálogo</a>
+      </header>
+      <div class="scroll-wrapper">
+        <button class="arrow-btn arrow-left" aria-label="Desplazar Para pasar el rato a la izquierda">
+          <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <div class="scroll-container" id="paraPasarRato">
+          <div class="card">
+            <img src="images/juego5.jpg" alt="Juego 5" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego5.html'">Ver</button>
+            </div>
+          </div>
+          <div class="card">
+            <img src="images/juego6.jpg" alt="Juego 6" />
+            <div class="btns-overlay">
+              <button onclick="location.href='juego6.html'">Ver</button>
+            </div>
+          </div>
+        </div>
+        <button class="arrow-btn arrow-right" aria-label="Desplazar Para pasar el rato a la derecha">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Funcionalidad flechas scroll para cada sección
+    document.querySelectorAll('section').forEach(section => {
+      const scrollContainer = section.querySelector('.scroll-container');
+      const btnLeft = section.querySelector('.arrow-left');
+      const btnRight = section.querySelector('.arrow-right');
+
+      if(!scrollContainer || !btnLeft || !btnRight) return;
+
+      btnLeft.addEventListener('click', () => {
+        scrollContainer.scrollBy({left: -300, behavior: 'smooth'});
+      });
+
+      btnRight.addEventListener('click', () => {
+        scrollContainer.scrollBy({left: 300, behavior: 'smooth'});
+      });
+    });
+  </script>
+
 </body>
 </html>
